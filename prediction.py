@@ -5,7 +5,6 @@ import pickle
 with open("model.pkl", 'rb') as file:
     model = pickle.load(file)
 
-# Load the OneHotEncoder
 with open("oneHotEncoder.pkl", 'rb') as file:
     encoder = pickle.load(file)
 
@@ -23,9 +22,9 @@ def preprocess_input(data):
 
     data = pd.concat([data, encoded_columns], axis=1)
 
-    data = pd.DataFrame(scaler.transform(data), columns=data.columns)
-
     data.drop(categorical_columns, axis=1, inplace=True)
+
+    data = pd.DataFrame(scaler.transform(data), columns=data.columns)
 
     return data
 
@@ -36,7 +35,6 @@ def predict(data):
     prediction = model.predict(data)
 
     return prediction
-
 
 def main():
     st.title("Churn Prediction")

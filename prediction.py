@@ -14,7 +14,6 @@ with open("scaler.pkl", 'rb') as file:
 
 
 def preprocess_input(data):
-    # Preprocess categorical variables
     categorical_columns = ['Geography']
 
     data.replace({"Gender": {"Male": 1, "Female": 0}}, inplace=True)
@@ -24,8 +23,7 @@ def preprocess_input(data):
     data.drop(categorical_columns, axis=1, inplace=True)
     data = pd.concat([data, encoded_columns], axis=1)
 
-    # Preprocess numerical variables
-    data = scaler.transform(data)
+    data = pd.DataFrame(scaler.transform(data), columns=data.columns)
 
     return data
 

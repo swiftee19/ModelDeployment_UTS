@@ -19,11 +19,13 @@ def preprocess_input(data):
     data.replace({"Gender": {"Male": 1, "Female": 0}}, inplace=True)
 
     encoded_columns = pd.DataFrame(encoder.transform(data[categorical_columns]))
-    data.drop(categorical_columns, axis=1, inplace=True)
     encoded_columns.columns = encoder.get_feature_names_out(categorical_columns)
+
     data = pd.concat([data, encoded_columns], axis=1)
 
     data = pd.DataFrame(scaler.transform(data), columns=data.columns)
+
+    data.drop(categorical_columns, axis=1, inplace=True)
 
     return data
 

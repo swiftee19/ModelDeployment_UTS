@@ -18,7 +18,6 @@ def preprocess_input(data):
     categorical_columns = ['Geography']
 
     data.replace({"Gender": {"Male": 1, "Female": 0}}, inplace=True)
-    data.drop()
 
     encoded_columns = pd.DataFrame(encoder.transform(data[categorical_columns]))
     encoded_columns.columns = encoder.get_feature_names_out(categorical_columns)

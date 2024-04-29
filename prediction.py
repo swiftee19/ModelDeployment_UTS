@@ -54,15 +54,15 @@ def main():
 
     user_input = pd.DataFrame({
         'CreditScore': [credit_score],
+        'Geography': [geography],
+        'Gender': [gender],
         'Age': [age],
         'Tenure': [tenure],
         'Balance': [balance],
         'NumOfProducts': [num_of_products],
         'HasCrCard': [has_credit_card],
         'IsActiveMember': [is_active_member],
-        'EstimatedSalary': [estimated_salary],
-        'Geography': [geography],
-        'Gender': [gender]
+        'EstimatedSalary': [estimated_salary]
     })
 
     if st.button("Predict Churn"):
